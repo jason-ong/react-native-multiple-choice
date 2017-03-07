@@ -83,11 +83,19 @@ class MultipleChoice extends BaseComponent {
     _selectOption(selectedOption) {
 
         let selectedOptions = this.state.selectedOptions;
-        const index = selectedOptions.indexOf(selectedOption);
-
+        if(typeof(selectedOption.value) != 'undefined'){
+            var index = selectedOptions.indexOf(selectedOption.value);
+        }else{
+            var index = selectedOptions.indexOf(selectedOption);
+        }
         if (index === -1) {
             this._validateMaxSelectedOptions();
-            selectedOptions.push(selectedOption);
+            if(typeof(selectedOption.value) != 'undefined'){
+                selectedOptions.push(selectedOption.value);
+            }else{
+                selectedOptions.push(selectedOption);
+            }
+
         } else {
             selectedOptions.splice(index, 1);
         }
