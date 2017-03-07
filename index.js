@@ -107,7 +107,11 @@ class MultipleChoice extends BaseComponent {
     }
 
     _isSelected(option) {
-        return this.state.selectedOptions.indexOf(option) !== -1;
+        if(typeof(option.value) != 'undefined'){
+            return this.state.selectedOptions.indexOf(option.value) !== -1;
+        } else{
+            return this.state.selectedOptions.indexOf(option) !== -1;
+        }
     }
 
     _renderIndicator(option) {
